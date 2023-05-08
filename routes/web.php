@@ -30,7 +30,7 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 Route::get('/users/{id}', [CustomAuthController::class, 'show'])->name('show');
 Route::get('pages', [CustomAuthController::class, 'phanTrang'])->name('abc');
 
-
+Route::get('', [ProductController::class, 'showProduct'])->name('home');
 Route::get('/shop', [ShopController::class, 'show'])->name('shop');
 
 

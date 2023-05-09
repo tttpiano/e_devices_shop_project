@@ -33,4 +33,4 @@ Route::get('pages', [CustomAuthController::class, 'phanTrang'])->name('abc');
 Route::get('', [ProductController::class, 'showProduct'])->name('home');
 Route::get('/shop', [ShopController::class, 'show'])->name('shop');
 
-
+Route::get('/shopdetail/{id}', [ShopDetailController::class, 'showId'])->name('shopId');

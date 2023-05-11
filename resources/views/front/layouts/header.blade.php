@@ -154,22 +154,27 @@
                         <span>All Categories</span>
                     </div>
                     <ul>
-{{--                        @foreach($brands as $value)--}}
-{{--                        <li><a href="{{ route('shopId', ['id' => $value->id]) }}">{{$value->name}}</a></li>--}}
-{{--                        @endforeach--}}
+                        <form action="{{route("shop")}}">
+                            @foreach($brands as $value)
+                                <li>
+                                    <a href="/shop?brand%5B{{$value->id}}%5D=on&sort=asc">{{$value->name}}</a>
+                                </li>
+
+                            @endforeach
+                        </form>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
+                        <form action="{{route("search")}}" method="GET">
                             <!-- <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
 
                                 </div> -->
-                            <input type="text" placeholder="What do yo u need?">
+                            <input type="text" name="key" placeholder="What do yo u need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>

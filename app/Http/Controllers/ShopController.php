@@ -70,7 +70,7 @@ class ShopController extends Controller
         $brands = Brand::all();
         $rams = RamSize::all();
         $internalMemories = InternalMemory::all();
-
+        $products->appends(['sort' => 'asc']);
         return view('front.shop', ['products' => $products, 'brands' => $brands, 'ramsizes' => $rams, 'internalMemories' => $internalMemories]);
 
 

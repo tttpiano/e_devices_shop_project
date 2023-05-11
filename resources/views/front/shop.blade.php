@@ -153,7 +153,7 @@
                             @endforeach
                         </div>
                         <div>
-                            {!! $products->appends(['abc'=>''])->links('pagination::bootstrap-5',) !!}
+                            {!! $products->appends(request()->all())->links('pagination::bootstrap-5',) !!}
                         </div>
                     </div>
                 </div>

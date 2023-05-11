@@ -15,6 +15,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopDetailController;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,5 @@ Route::get('pages', [CustomAuthController::class, 'phanTrang'])->name('abc');
 
 Route::get('', [ProductController::class, 'showProduct'])->name('home');
 Route::get('/shop', [ShopController::class, 'show'])->name('shop');
-
+Route::get('/search', [SearchProductController::class, 'search'])->name('search');
 Route::get('/shopdetail/{id}', [ShopDetailController::class, 'showId'])->name('shopId');

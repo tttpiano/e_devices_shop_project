@@ -154,14 +154,13 @@
                         <span>All Categories</span>
                     </div>
                     <ul>
-                        <form action="{{route("shop")}}">
+
                             @foreach($brands as $value)
                                 <li>
                                     <a href="/shop?brand%5B{{$value->id}}%5D=on&sort=asc">{{$value->name}}</a>
                                 </li>
-
                             @endforeach
-                        </form>
+
                     </ul>
                 </div>
             </div>

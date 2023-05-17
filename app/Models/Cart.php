@@ -18,6 +18,7 @@ class Cart extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'user_id',
     ];
 }

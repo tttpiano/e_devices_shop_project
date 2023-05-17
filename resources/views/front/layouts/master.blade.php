@@ -50,9 +50,40 @@
     <script src="{{ asset('storage/js/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('storage/js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cart').click(function () {
+
+                var productId = $(this).data('product-id');
+                var quantity = $('.pro-qty input').val();
 
 
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('cart.add') }}',
+                    data: {
+                        product_id: productId,
+                        quantity: quantity
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Sản phẩm đã được thêm vào giỏ hàng.');
+                        } else {
+                            alert('Không thể thêm sản phẩm vào giỏ hàng.');
+                        }
+                    },
+                    error: function () {
+                        alert('Có lỗi xảy ra.');
+                    }
+                });
+            });
+        });
+
+    </script>
 
 </body>
 

@@ -141,9 +141,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-
+                        <li><a href="{{route('cart.show')}}"><i class="fa fa-shopping-bag"></i> <span>{{session('countProducts') }}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span></span></div>
+                    <div class="header__cart__price">item: <span>{{ number_format(session('total')) }}đ</span></div>
                 </div>
             </div>
         </div>

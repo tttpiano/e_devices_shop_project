@@ -21,6 +21,7 @@ use App\Http\Controllers\ShopDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
@@ -35,3 +36,9 @@ Route::get('', [ProductController::class, 'showProduct'])->name('home');
 Route::get('/shop', [ShopController::class, 'show'])->name('shop');
 Route::get('/search', [SearchProductController::class, 'search'])->name('search');
 Route::get('/shopdetail/{id}', [ShopDetailController::class, 'showId'])->name('shopId');
+
+
+Route::post('/cart/add', [CartController::class, 'addCart'] )->name('cart.add');
+Route::get('/cart/show', [CartController::class,'CartShow'])->name('cart.show');
+Route::get('/cart/add/{id}', [CartController::class, 'deleteCart'] )->name('cart.delete');
+Route::get('/cart/edit/{id}', [CartController::class, 'editCart'] )->name('cart.edit');

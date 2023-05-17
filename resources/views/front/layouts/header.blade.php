@@ -12,9 +12,9 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href=""><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
+        <div class="header__cart__price">item: <span></span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
@@ -92,7 +92,17 @@
                             </ul>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="{{route("login")}}"><i class="fa fa-user"></i> Login</a>
+                            @guest
+                                <a href="{{route("login")}}"><i class="fa fa-user"></i> Login</a>
+                            @else
+                                @if (Auth::check())
+                                    <div style="display: flex; list-style: none">
+                                        <li style="color:#1c7430; margin-right: 20px" >{{ auth()->user()->name }}</li>
+                                        <li><a href="{{ route('signout') }}"><i class="fa fa-user-o" style="color:#d12e00f0 !important"></i>Logout</a></li>
+                                    </div>
+                                @endif
+                            @endguest
+
                         </div>
                     </div>
                 </div>
@@ -103,7 +113,8 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{route('home')}}" style=" background-color: #1d2124; border-radius: 34px;padding: 0 27px;">
+                    <a href="{{route('home')}}"
+                       style=" background-color: #1d2124; border-radius: 34px;padding: 0 27px;">
                         <img src="{{asset('storage/img/logo.png')}}" alt="">
                     </a>
                 </div>
@@ -130,9 +141,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+
                     </ul>
-                    <div class="header__cart__price">item: <span>$150.00</span></div>
+                    <div class="header__cart__price">item: <span></span></div>
                 </div>
             </div>
         </div>
@@ -154,25 +165,18 @@
                         <span>All Categories</span>
                     </div>
                     <ul>
-
-                            @foreach($brands as $value)
-                                <li>
-                                    <a href="/shop?brand%5B{{$value->id}}%5D=on&sort=asc">{{$value->name}}</a>
-                                </li>
-                            @endforeach
-
+                        @foreach($brands as $value)
+                            <li>
+                                <a href="/shop?brand%5B{{$value -> id}}%5D=on&sort=asc">{{$value -> name}}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="{{route("search")}}" method="GET">
-                            <!-- <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-
-                                </div> -->
+                        <form action="{{route('search')}}" method="GET">
                             <input type="text" name="key" placeholder="What do yo u need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>

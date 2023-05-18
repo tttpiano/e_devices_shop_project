@@ -7,9 +7,9 @@
                         <a href="{{route('home')}}"><img src="{{asset('storage/img/logo.png')}}" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
+                        <li>Address: Thu Duc City</li>
+                        <li>Phone: +84 34.897.1008</li>
+                        <li>Email: 21211TT149@mail.tdc.edu.vn</li>
                     </ul>
                 </div>
             </div>

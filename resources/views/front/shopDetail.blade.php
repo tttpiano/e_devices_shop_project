@@ -1,16 +1,10 @@
 @extends('front.layouts.master')
 @section('main-container')
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
-                        <div class="breadcrumb__option">
-                            <a href="{{route('home')}}}">Home</a>
-                            <a href="">Vegetables</a>
-                            <span>Vegetable’s Package</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -60,8 +54,16 @@
                                 </div>
                             </div>
                         </div>
-                        <a data-product-id="{{$sDetail->id}}"  class="primary-btn add-to-cart ">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        @guest
+                            <a data-product-id="" style="cursor: pointer; color: #fff !important;" class="primary-btn addCart">ADD TO CARD</a>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        @else
+                            @if (Auth::check())
+                                <a href=""  data-product-id="{{$sDetail->id}}" style="cursor: pointer;color: #fff !important;" class="primary-btn add-to-cart ">ADD TO CARD</a>
+                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            @endif
+                        @endguest
+
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
@@ -203,4 +205,23 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset('storage/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('storage/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('storage/js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('storage/js/owl.carousel.min.js')}}"></script>
+    <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('.addCart').click(function () {
+                alert("vui lòng đăng nhập tài khoản để thêm vào giỏ hàng");
+            });
+        });
+
+    </script>
 @endsection

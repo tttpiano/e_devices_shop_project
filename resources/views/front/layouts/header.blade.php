@@ -69,8 +69,16 @@
                 <div class="col-lg-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+
+                            @guest
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            @else
+                                @if (Auth::check())
+                                    <li><i class="fa fa-envelope"></i>{{ auth()->user()->email }} </li>
+                                    <li>Free Shipping for all Order of $99</li>
+                                @endif
+                            @endguest
                         </ul>
                     </div>
                 </div>
@@ -139,11 +147,22 @@
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="{{route('cart.show')}}"><i class="fa fa-shopping-bag"></i> <span>{{session('countProducts') }}</span></a></li>
-                    </ul>
-                    <div class="header__cart__price">item: <span>{{ number_format(session('total')) }}đ</span></div>
+                    @guest
+                        <ul class="cart">
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: <span>0đ</span></div>
+                    @else
+                        @if (Auth::check())
+                            <ul>
+                                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                                <li><a href="{{route('cart.show')}}"><i class="fa fa-shopping-bag"></i> <span>{{session('countProducts') }}</span></a></li>
+                            </ul>
+                            <div class="header__cart__price">item: <span>{{ number_format(session('total')) }}đ</span></div>
+                        @endif
+                    @endguest
+
                 </div>
             </div>
         </div>
@@ -186,7 +205,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <h5>+84 34.897.1008</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>
@@ -194,4 +213,25 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('storage/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('storage/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('storage/js/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('storage/js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('storage/js/owl.carousel.min.js')}}"></script>
+    <script src="https://kit.fontawesome.com/f6dce9b617.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('.cart').click(function () {
+
+                alert("vui lòng đăng nhập tài khoản");
+
+            });
+        });
+
+    </script>
 </section>

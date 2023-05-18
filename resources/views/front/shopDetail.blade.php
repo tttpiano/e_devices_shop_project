@@ -104,19 +104,61 @@
                             </div>
 
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Reviews</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
+                                <div class="row">
+                                    <!-- Reviews -->
+
+                                    <div class="col-md-6">
+
+
+                                        <div id="reviews">
+                                            <ul class="reviews">
+                                                @foreach ($ratings as $rating)
+                                                    <li>
+                                                        <div class="review-heading">
+                                                            <h5 class="name">{{ $rating->user->name }}</h5>
+                                                            <p class="date">{{ $rating->created_at}}</p>
+                                                            <div class="review-rating">
+                                                                @for ($i = 1; $i <= 5; $i++) @if ($i <=$rating->rating)
+                                                                    <i class="fa fa-star"></i>
+                                                                @else
+                                                                    <i class="fa fa-star-o "></i>
+                                                                @endif
+                                                                @endfor
+                                                            </div>
+                                                        </div>
+                                                        @if ($rating->comment)
+                                                            <div class="review-body">
+                                                                <p>{{ $rating->comment }}</p>
+                                                            </div>
+                                                        @endif
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /Reviews -->
+
+                                    <!-- Review Form -->
+                                    <div class="col-md-3">
+                                        <div id="review-form">
+                                            <form class="review-form" action="{{route('ratings.store', $sDetail->id) }}" method="POST">
+                                                @csrf
+                                                <textarea class="input" style="width: 500px;" name="comment" id="comment" placeholder="Your Review"></textarea>
+                                                <div class="input-rating">
+                                                    <span>Your Rating: </span>
+                                                    <div class="stars" name="rating" id="rating">
+                                                        <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                                        <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                                        <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                                        <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                                        <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                                    </div>
+                                                </div>
+                                                <button class="primary-btn">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- /Review Form -->
                                 </div>
                             </div>
                         </div>

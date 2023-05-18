@@ -15,6 +15,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopDetailController;
@@ -42,3 +43,4 @@ Route::post('/cart/add', [CartController::class, 'addCart'] )->name('cart.add');
 Route::get('/cart/show', [CartController::class,'CartShow'])->name('cart.show');
 Route::get('/cart/add/{id}', [CartController::class, 'deleteCart'] )->name('cart.delete');
 Route::get('/cart/edit/{id}', [CartController::class, 'editCart'] )->name('cart.edit');
+Route::post('/shopdetail/{id}', [ReviewController::class, 'store'])->name('ratings.store')->middleware('auth');

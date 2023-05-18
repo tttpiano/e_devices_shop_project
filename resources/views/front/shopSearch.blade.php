@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            @foreach($products as $value)
+                            @foreach($search as $value)
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="{{$value->images[0]->url}}">
@@ -153,7 +153,7 @@
                             @endforeach
                         </div>
                         <div>
-                            {!! $products->appends(request()->all())->links('pagination::bootstrap-5',) !!}
+                            {!! $search->appends(request()->all())->links('pagination::bootstrap-5',) !!}
                         </div>
                     </div>
                 </div>

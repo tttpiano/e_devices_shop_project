@@ -18,8 +18,15 @@ class CartItem extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'quantity',
         'cart_id',
         'product_id',
-        'quantity',
+        'product',
     ];
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+
 }
